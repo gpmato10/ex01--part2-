@@ -35,8 +35,8 @@ public class BoardController {
 
         service.regist(board);
 
-        redirectAttributes.addFlashAttribute("msg", "success");
-        
+        redirectAttributes.addFlashAttribute("msg", "SUCCESS");
+
         return "redirect:/board/listAll";
     }
 
