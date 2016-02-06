@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.service.BoardService;
 
@@ -28,15 +29,14 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String registPost(BoardVO board, Model model) throws Exception {
+    public String registPost(BoardVO board, RedirectAttributes redirectAttributes) throws Exception {
         log.info("regist post .........");
         log.info(board.toString());
 
         service.regist(board);
 
-        model.addAttribute("result", "success!333");
-
-//        return "/board/success";
+        redirectAttributes.addFlashAttribute("msg", "success");
+        
         return "redirect:/board/listAll";
     }
 
