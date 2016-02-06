@@ -2,7 +2,7 @@
 insert into tbl_board(title, content, writer) values('제목입니다', '내용입니다', 'user00');
 
 ## 게시물 조회
-select * from table_board where bno = 1;
+select * from tbl_board where bno = 1;
 
 ## 게시물 전체목록 조회
 select * from tbl_board where bno > 0 order by bno desc;
