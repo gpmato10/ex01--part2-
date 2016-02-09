@@ -25,3 +25,7 @@ create table tbl_board(
   viewcnt int default 0,
   PRIMARY KEY (bno)
 );
+
+## 데이터 불리기
+insert into tbl_board(title, content, writer) (select title, content, writer from tbl_board);
+select count(*) from tbl_board;

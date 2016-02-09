@@ -10,6 +10,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.persistence.BoardDAO;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by dw on 2016. 2. 7..
@@ -48,5 +49,17 @@ public class BoardDAOTest {
     @Test
     public void testDelete() throws Exception {
         dao.delete(1);
+    }
+
+    @Test
+    public void testListPage() throws Exception {
+        int page = 3;
+
+        List<BoardVO> list = dao.listPage(page);
+
+        for (BoardVO boardVO : list) {
+            log.info(boardVO.getBno() + ":" + boardVO.getTitle());
+        }
+
     }
 }
