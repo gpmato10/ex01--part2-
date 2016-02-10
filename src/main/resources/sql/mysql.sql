@@ -32,3 +32,6 @@ select count(*) from tbl_board;
 
 ## page 258 limit 20, 20  테스트 결과 확인하기.
 select * from tbl_board where bno > 0 order by bno desc limit 20,20;
+
+## 9.4 연습중
+http://localhost:8080/board/listPage?page=6
