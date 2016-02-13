@@ -26,6 +26,11 @@ create table tbl_board(
   PRIMARY KEY (bno)
 );
 
+## 샘플데이터 삽입
+insert into tbl_board(title, content, writer) VALUES ("제목1", "본문1", "작가1");
+insert into tbl_board(title, content, writer) VALUES ("제목2", "본문2", "작가2");
+insert into tbl_board(title, content, writer) VALUES ("제목3", "본문3", "작가3");
+insert into tbl_board(title, content, writer) VALUES ("제목4", "본문4", "작가4");
 ## 데이터 불리기
 insert into tbl_board(title, content, writer) (select title, content, writer from tbl_board);
 select count(*) from tbl_board;
