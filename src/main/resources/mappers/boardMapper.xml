@@ -42,5 +42,16 @@
     <select id="countPaging" resultType="int">
         select count(bno) from tbl_board where bno > 0
     </select>
+
+    <select id="listSearch" resultType="BoardVO">
+        select * from tbl_board
+        where bno > 0 order by bno DESC limit #{pageStart}, #{perPageNum}
+    </select>
+
+    <select id="listSearchCount" resultType="int">
+        select count(bno)
+        from tbl_board
+        where bno > 0
+    </select>
 </mapper>
 

@@ -10,6 +10,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.SearchCriteria;
 import org.zerock.persistence.BoardDAO;
 
 import javax.inject.Inject;
@@ -107,5 +108,23 @@ public class BoardDAOTest {
 
     }
 
+    @Test
+    public void testDynamic1() throws Exception {
+        SearchCriteria cri = new SearchCriteria();
+        cri.setPage(1);
+        cri.setKeyword("글");
+        cri.setSearchType("t");
 
+        log.info("===================");
+
+        List<BoardVO> list = dao.listSearch(cri);
+
+        for (BoardVO boardVO : list) {
+            log.info(boardVO.getBno() + ": " + boardVO.getTitle());
+        }
+
+        log.info("==============");
+
+        log.info("COUNT: " + dao.listSearchCount(cri));
+    }
 }
