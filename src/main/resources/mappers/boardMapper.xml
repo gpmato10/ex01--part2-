@@ -44,18 +44,9 @@
     </select>
 
 
-
-    <select id="listSearchCount" resultType="int">
-        select count(bno)
-        from tbl_board
-        where bno > 0
-    </select>
-
-    <!--p327-->
-    <select id="listSearch" resultType="BoardVO">
-        select * from tbl_board
-        where bno > 0
-        <if test="searchType != null">
+    <!--p329-->
+    <sql id="search">
+        <if test="searchType != null" >
             <if test="searchType == 't'.toString()">
                 and title like CONCAT('%', #{keyword}, '%')
             </if>
@@ -69,16 +60,40 @@
                 and ( title like CONCAT('%', #{keyword}, '%') OR content like CONCAT('%', #{keyword}, '%'))
             </if>
             <if test="searchType == 'cw'.toString()">
-                and ( content like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyowrd}, '%'))
+                and ( content like CONCAT('%', #{keyword}, '%') OR writer like CONCAT('%', #{keyword}, '%'))
             </if>
             <if test="searchType == 'tcw'.toString()">
-                and ( title like CONCAT('%', #{keyword}, '%')
-                OR content like CONCAT('%', #{keyword}, '%'))
-                OR writer like CONCAT('%', #{keyword}, '%'})
+                and (   title like CONCAT('%', #{keyword}, '%')
+                OR
+                content like CONCAT('%', #{keyword}, '%')
+                OR
+                writer like CONCAT('%', #{keyword}, '%'))
             </if>
         </if>
-        order by bno desc
-        limit #{pageStart}, #{perPageNum}
+    </sql>
+
+    <select id="listSearch" resultType="BoardVO">
+        <![CDATA[
+          select *
+          from tbl_board
+          where bno > 0
+        ]]>
+
+        <include refid="search"></include>
+
+        <![CDATA[
+          order by bno desc
+          limit #{pageStart}, #{perPageNum}
+        ]]>
+    </select>
+
+    <select id="listSearchCount" resultType="int">
+        <![CDATA[
+          select count(bno)
+          from tbl_board
+          where bno > 0
+        ]]>
+        <include refid="search"></include>
     </select>
 </mapper>
 
