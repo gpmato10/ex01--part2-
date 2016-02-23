@@ -127,4 +127,5 @@ public class BoardDAOTest {
 
         log.info("COUNT: " + dao.listSearchCount(cri));
     }
+//    p327 coding
 }
