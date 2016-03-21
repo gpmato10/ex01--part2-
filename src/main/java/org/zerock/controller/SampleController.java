@@ -67,4 +67,20 @@ public class SampleController {
     public ResponseEntity<Void> sendListAuto() {
         return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
     }
+
+    @RequestMapping(value = "/sendErrorNot")
+    public ResponseEntity<List<SampleVo>> sendListNot() {
+
+        List<SampleVo> list = new ArrayList<>();
+
+        for (int i=0; i < 10; i++) {
+            SampleVo vo = new SampleVo();
+            vo.setFirstName("길동");
+            vo.setLastName("홍");
+            vo.setMno(i);
+            list.add(vo);
+        }
+
+        return new ResponseEntity<List<SampleVo>>(list, HttpStatus.NOT_FOUND);
+    }
 }
