@@ -39,4 +39,17 @@ select count(*) from tbl_board;
 select * from tbl_board where bno > 0 order by bno desc limit 20,20;
 
 ## 9.4 연습중
-http://localhost:8080/board/listPage?page=6
+## http://localhost:8080/board/listPage?page=6
+
+## p370
+create table tbl_reply(
+  rno int not null AUTO_INCREMENT,
+  bno int not null default 0,
+  replytext varchar(1000) not null,
+  replyer varchar(50) not null,
+  regdate TIMESTAMP not null DEFAULT  now(),
+  update TIMESTAMP not null DEFAULT  now(),
+  PRIMARY KEY (rno)
+);
+
+alter table tbl_reply add CONSTRAINT fk_board FOREIGN KEY (bno) REFERENCES tbl_board(bno);

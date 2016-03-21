@@ -84,7 +84,7 @@ a.DTTT_button {
 }
 
 
-/* Buttons are cunning border-box sizing - we can't just use that for A and DIV due to IE6/7 */
+/* Buttons are cunning border-box sizing - we can't just use that for ABox and DIV due to IE6/7 */
 button.DTTT_button {
 	height: 30px;
 	padding: 3px 8px;
