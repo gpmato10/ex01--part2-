@@ -74,5 +74,4 @@ public class BoardDAOImpl implements BoardDAO {
     public int listSearchCount(SearchCriteria cri) throws Exception {
         return session.selectOne(namespace + ".listSearchCount", cri);
     }
-
 }

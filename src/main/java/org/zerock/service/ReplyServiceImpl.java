@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import org.springframework.stereotype.Service;
 import org.zerock.domain.ReplyVo;
 import org.zerock.persistence.ReplyDao;
 
@@ -9,6 +10,8 @@ import java.util.List;
 /**
  * Created by dw on 2016. 3. 22..
  */
+
+@Service
 public class ReplyServiceImpl implements ReplyService {
     @Inject
     private ReplyDao dao;
