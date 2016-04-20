@@ -1,6 +1,7 @@
 package org.zerock.persistence;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.stereotype.Repository;
 import org.zerock.domain.ReplyVo;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by dw on 2016. 3. 22..
  */
+@Repository
 public class ReplyDaoImpl implements ReplyDao {
 
     @Inject
