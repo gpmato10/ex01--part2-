@@ -65,4 +65,19 @@ public class ReplyController {
         }
         return entity;
     }
+
+    @RequestMapping(value = "/{rno}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> remove(@PathVariable("rno") Integer rno) {
+
+        ResponseEntity<String> entity  = null;
+        try {
+            service.removeReply(rno);
+            entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return entity;
+    }
+
 }
