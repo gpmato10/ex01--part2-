@@ -48,7 +48,7 @@ create table tbl_reply(
   replytext varchar(1000) not null,
   replyer varchar(50) not null,
   regdate TIMESTAMP not null DEFAULT  now(),
-  update TIMESTAMP not null DEFAULT  now(),
+  updatedate TIMESTAMP not null DEFAULT  now(),
   PRIMARY KEY (rno)
 );
 
