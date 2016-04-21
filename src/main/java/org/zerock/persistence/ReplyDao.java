@@ -1,5 +1,6 @@
 package org.zerock.persistence;
 
+import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVo;
 
 import java.util.List;
@@ -16,4 +17,7 @@ public interface ReplyDao {
 
     public void delete(Integer rno) throws Exception;
 
+    public List<ReplyVo> listPage(Integer bno, Criteria cri) throws Exception;
+
+    public int count(Integer bno) throws Exception;
 }

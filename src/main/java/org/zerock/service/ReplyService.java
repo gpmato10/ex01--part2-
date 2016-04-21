@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVo;
 
 import java.util.List;
@@ -15,4 +16,8 @@ public interface ReplyService {
     public void modifyReply(ReplyVo vo) throws Exception;
 
     public void removeReply(Integer rno) throws Exception;
+
+    public List<ReplyVo> listReplyPage(Integer bno, Criteria criteria) throws Exception;
+
+    public int count(Integer bno) throws Exception;
 }

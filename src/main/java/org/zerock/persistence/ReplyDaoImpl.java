@@ -2,10 +2,13 @@ package org.zerock.persistence;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVo;
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dw on 2016. 3. 22..
@@ -36,5 +39,21 @@ public class ReplyDaoImpl implements ReplyDao {
     @Override
     public void delete(Integer rno) throws Exception {
         session.delete(namespace + ".delete", rno);
+    }
+
+    @Override
+    public List<ReplyVo> listPage(Integer bno, Criteria cri) throws Exception {
+        Map<String, Object> paramMap = new HashMap<>();
+
+        paramMap.put("bno", bno);
+        paramMap.put("cri", cri);
+
+        return session.selectList(namespace + ".listPage", paramMap);
+    }
+
+    @Override
+    public int count(Integer bno) throws Exception {
+
+        return session.selectOne(namespace + ".count", bno);
     }
 }

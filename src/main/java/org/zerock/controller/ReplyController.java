@@ -3,11 +3,15 @@ package org.zerock.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.PageMaker;
 import org.zerock.domain.ReplyVo;
 import org.zerock.service.ReplyService;
 
 import javax.inject.Inject;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by dw on 2016. 4. 20..
@@ -79,5 +83,38 @@ public class ReplyController {
         }
         return entity;
     }
+
+    @RequestMapping(value = "/{bno}/{page}", method = RequestMethod.GET)
+    public ResponseEntity<Map<String, Object>> listPage(
+            @PathVariable("bno") Integer bno,
+            @PathVariable("page") Integer page) {
+
+        ResponseEntity<Map<String, Object>> entity = null;
+
+        try {
+            Criteria cri = new Criteria();
+            cri.setPage(page);
+
+            PageMaker pageMaker = new PageMaker();
+            pageMaker.setCri(cri);
+
+            Map<String, Object> map = new HashMap<String, Object>();
+            List<ReplyVo> list = service.listReplyPage(bno, cri);
+
+            map.put("list", list);
+
+            int replyCount = service.count(bno);
+            pageMaker.setTotalCount(replyCount);
+
+            map.put("pageMaker", pageMaker);
+
+            entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+        }
+        return entity;
+    }
+
 
 }
